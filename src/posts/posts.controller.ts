@@ -8,7 +8,7 @@ import {
     Delete,
 } from '@nestjs/common';
 import { PostsService } from "./posts.service";
-
+import { CreatePostDto } from "./dto/create-post.dto"
 @Controller('posts')
 
 export class PostsController {
@@ -22,6 +22,7 @@ export class PostsController {
 
     @Post()
     addPost(
+        @Body() createPostDto: CreatePostDto,
         @Body('title') postTitle: string,
         @Body('textBody') postBody: string,
         @Body('likes') postLikes: number,

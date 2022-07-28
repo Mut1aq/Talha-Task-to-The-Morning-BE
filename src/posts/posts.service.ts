@@ -33,12 +33,16 @@ export class PostsService {
         return this.postsRepository.findOne({ where: { id: postId } })
     }
 
-    private findPost(id: number): [PostModel, number] {
-        const postIndex = this.posts.findIndex(pos => pos.id === id);
-        const post = this.posts[postIndex];
-        if (!post) {
-            throw new NotFoundException('Could not find post.');
-        }
-        return [post, postIndex];
+    updatePost(postId: number) {
+        // return this.postsRepository.update({ where: { id: postId } })
     }
+
+    // private findPost(id: number): [PostModel, number] {
+    //     const postIndex = this.posts.findIndex(pos => pos.id === id);
+    //     const post = this.posts[postIndex];
+    //     if (!post) {
+    //         throw new NotFoundException('Could not find post.');
+    //     }
+    //     return [post, postIndex];
+    // }
 }
