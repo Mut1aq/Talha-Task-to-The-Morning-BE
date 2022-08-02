@@ -46,7 +46,6 @@ export class PostsController {
     exportCSV(
         @Body('posts') posts: PostModel[],
     ) {
-        console.log(posts)
         return this.postsService.exportCSV(posts)
     }
 
