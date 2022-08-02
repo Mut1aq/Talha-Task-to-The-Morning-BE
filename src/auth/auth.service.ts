@@ -1,23 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { bcrypt } from 'bcrypt'
+import { User } from '../entities/user.entity';
+import { UserModel } from './user.model';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
+  async signup(username: string, password: string) {
+    const user = await this.usersRepository.findOne({ where: { username } })
+    if (user) {
+      return { msg: "Username Already Taken" }
+    }
+
+    return this.usersRepository.save({})
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
-  }
 }

@@ -7,6 +7,7 @@ import config from '../ormconfig'
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { Post } from './entities/post.entity';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [TypeOrmModule.forRoot(config), AuthModule, PostsModule],
