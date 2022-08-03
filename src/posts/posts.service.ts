@@ -98,7 +98,7 @@ export class PostsService {
         fs.writeFile(`./${dirName}/table-data-${randomName}.csv`, rows.join('\n'), (err) => {
             if (err) throw err;
         })
-        return 0
+        return { msg: "Export Success" }
     }
 
     async seeUploadedFile(file): Promise<PostModel[]> {
