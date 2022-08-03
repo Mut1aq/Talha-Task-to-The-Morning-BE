@@ -72,6 +72,7 @@ export class PostsService {
 
     exportCSV(posts: PostModel[]) {
         console.log(posts, "*");
+        const dirName = './downloads';
 
         const randomName = Array(4)
             .fill(null)
@@ -89,7 +90,12 @@ export class PostsService {
             rows.push(values.join(','));
         }
 
-        fs.writeFile(`./downloads/table-data-${randomName}.csv`, rows.join('\n'), (err) => {
+
+        if (!fs.existsSync(dirName)) {
+            fs.mkdirSync(dirName);
+        }
+
+        fs.writeFile(`./${dirName}/table-data-${randomName}.csv`, rows.join('\n'), (err) => {
             if (err) throw err;
         })
         return 0
